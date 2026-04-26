@@ -1,0 +1,52 @@
+{
+  "name": "kodama-ai",
+  "version": "1.0.0",
+  "description": "KODAMA AI — Your Professional Synthesis Partner",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win --x64"
+  },
+  "author": "Adi",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^35.0.0",
+    "electron-builder": "^25.0.0"
+  },
+  "build": {
+    "appId": "com.kodama.ai",
+    "productName": "KODAMA AI",
+    "win": {
+      "target": "nsis",
+      "icon": "assets/logo.png",
+      "extraResources": [
+        {
+          "from": "dist/api_bridge.exe",
+          "to": "api_bridge.exe"
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "assets/logo.png",
+      "uninstallerIcon": "assets/logo.png",
+      "installerHeader": "assets/installer_header.png",
+      "installerHeaderIcon": "assets/logo.png",
+      "installerSidebar": "assets/opera_sidebar.png",
+      "uninstallerSidebar": "assets/opera_sidebar.png",
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "shortcutName": "KODAMA AI",
+      "runAfterFinish": true
+    },
+    "directories": {
+      "output": "release"
+    }
+  },
+  "dependencies": {
+    "axios": "^1.15.2",
+    "pptxgenjs": "^4.0.1"
+  }
+}

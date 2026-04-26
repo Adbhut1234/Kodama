@@ -1,0 +1,24 @@
+# Dependency directories
+node_modules/
+llm-env/
+
+# Build artifacts
+release/
+dist/
+build/
+*.spec
+*.exe
+
+# Local configuration and history
+kodama_config.json
+kodama_history.json
+kodama_data/
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+
+# OS files
+.DS_Store
+Thumbs.db
