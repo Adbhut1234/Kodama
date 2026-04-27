@@ -507,11 +507,11 @@ async function loadAgents(force = false) {
     }
 }
 
-async function switchAgent(modelName) {
+async function switchAgent(modelName, event) {
     if (modelName === activeModel) return;
     
     // Show switching status
-    const card = event.currentTarget;
+    const card = event.currentTarget || event.target.closest('.glass-panel');
     const badge = card.querySelector('.rounded-full');
     const originalBadge = badge.innerHTML;
     badge.innerHTML = 'Switching...';
@@ -568,7 +568,7 @@ function renderAgentGrid(models, activeModelName) {
         const badge = isActive ? '<div class="px-3 py-1 rounded-full border border-primary/20 bg-primary/10 text-primary text-[8px] font-black tracking-widest uppercase shadow-[0_0_15px_rgba(255,255,255,0.1)] active-core-badge">Primary_Core</div>' : '<div class="px-3 py-1 rounded-full border border-outline/20 bg-surface-variant/50 text-on-surface/40 text-[8px] font-black tracking-widest uppercase">Archive_Node</div>';
 
         return `
-            <div onclick="switchAgent('${m.name}')" class="glass-panel p-6 rounded-[2.5rem] border ${activeClass} hover:border-primary/40 hover:bg-primary/[0.02] transition-all duration-500 group relative flex flex-col justify-between min-h-[240px] hover:-translate-y-2 cursor-pointer scale-anim" style="animation: reveal 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: ${i * 50}ms; opacity: 0;">
+            <div onclick="switchAgent('${m.name}', event)" class="glass-panel p-6 rounded-[2.5rem] border ${activeClass} hover:border-primary/40 hover:bg-primary/[0.02] transition-all duration-500 group relative flex flex-col justify-between min-h-[240px] hover:-translate-y-2 cursor-pointer scale-anim" style="animation: reveal 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: ${i * 50}ms; opacity: 0;">
                 <div class="absolute -top-4 -right-4 w-32 h-32 bg-primary/5 rounded-full blur-3xl ${isActive ? 'opacity-100' : 'opacity-0'} group-hover:opacity-100 transition-opacity"></div>
                 
                 <div>
@@ -626,7 +626,10 @@ async function onMakePDF() {
         const r = await window.kodama.generatePDF(topic.trim());
         hideThinking();
         if (r.error) addAIMessage(`⚠️ DOCUMENTATION ERROR: ${r.error}`);
-        else addAIMessage(`✅ PDF archival complete.\n\nResource located: ${r.filename}`, ['PDF_EXPORT_SUCCESS', 'PRIORITY_LEVEL_A']);
+        else addAIMessage(`✅ PDF archival complete.\n\nResource located: ${r.filename}`, 
+             ['PDF_EXPORT_SUCCESS', 'PRIORITY_LEVEL_A'],
+             { label: 'Open PDF', path: r.filename }
+        );
     } catch (e) { hideThinking(); addAIMessage(`⚠️ ${e.message}`); }
     finally { isProcessing = false; document.getElementById('send-btn').disabled = false; }
 }

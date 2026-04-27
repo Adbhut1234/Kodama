@@ -393,12 +393,12 @@ Even if you are a small model, try your best to follow this structure:
         # Smart Fallback: If JSON fails, at least provide the raw text and search info
         content_snippet = raw_data if len(raw_data) > 100 else "The neural model failed to synthesize a response. Check your connection to Ollama."
         data = {
-            "title": topic.upper(),
+            "title": str(topic).upper(),
             "subtitle": "DIRECT DATA SYNTHESIS",
             "abstract": "Automatic synthesis initiated after structure failure. This usually happens with very small models (e.g. 1B-3B) or connection timeouts.",
             "chapters": [
-                {"heading": "Direct Analysis", "body": content_snippet},
-                {"heading": "Internet Context", "body": search_results if search_results else "No internet data available."}
+                {"heading": "Direct Analysis", "body": str(content_snippet)},
+                {"heading": "Internet Context", "body": str(search_results) if search_results else "No internet data available."}
             ],
             "key_takeaway": "Synthesis completed via direct stream."
         }
@@ -471,11 +471,13 @@ Even if you are a small model, try your best to follow this structure:
             
             canvas.setFillColor(white)
             canvas.setFont('Helvetica-Bold', 32)
-            canvas.drawString(25*mm, A4[1]-60*mm, data.get("title", topic).upper())
+            title_text = str(data.get("title", topic) or topic).upper()
+            canvas.drawString(25*mm, A4[1]-60*mm, title_text)
             
             canvas.setFont('Helvetica', 14)
             canvas.setFillColor(a_color)
-            canvas.drawString(25*mm, A4[1]-75*mm, data.get("subtitle", "INTELLIGENCE REPORT"))
+            subtitle_text = str(data.get("subtitle", "INTELLIGENCE REPORT") or "INTELLIGENCE REPORT").upper()
+            canvas.drawString(25*mm, A4[1]-75*mm, subtitle_text)
             
             canvas.setFillColor(s_color)
             canvas.setFont('Helvetica-Bold', 18)

@@ -54,6 +54,8 @@ def handle_action(action, request):
 
     elif action == "generate_pdf":
         return handle_pdf(request)
+    elif action == "generate_ppt":
+        return handle_ppt(request)
     else:
         return {"error": f"Unknown action: {action}"}
 
@@ -105,11 +107,11 @@ def switch_model(request):
     new_model = request.get("model")
     if not new_model: return {"error": "No model specified"}
     
-    # Update memory
+    # Update current process memory
     utils.MODEL_NAME = new_model
     
-    # Update config file
-    config_path = os.path.join(HISTORY_DIR, "kodama_config.json")
+    # Update config file in persistence layer
+    config_path = os.path.join(KODAMA_DATA_DIR, "kodama_config.json")
     config = {}
     if os.path.exists(config_path):
         try:
@@ -121,11 +123,23 @@ def switch_model(request):
     config["setup_complete"] = True
     
     try:
+        os.makedirs(os.path.dirname(config_path), exist_ok=True)
         with open(config_path, 'w', encoding='utf-8') as f:
             json.dump(config, f, indent=2)
         return {"success": True, "active_model": new_model}
     except Exception as e:
         return {"error": str(e)}
+
+
+def handle_ppt(request):
+    from document_generator import create_ppt
+    topic = request.get("topic", "Untitled")
+    num_slides = request.get("num_slides", 5)
+    try:
+        filename = create_ppt(topic, num_slides)
+        return {"filename": os.path.abspath(filename)}
+    except Exception as e:
+        return {"error": f"PPT Generation Failed: {str(e)}"}
 
 
 def handle_chat(request):
@@ -162,7 +176,8 @@ def handle_chat(request):
         return handle_ppt({"topic": topic, "num_slides": num_slides})
 
     pdf_match = re.search(r'\b(pdf|report|document)\b', query_lower)
-    if pdf_match and re.search(r'\b(make|create|generate|build|prepare|write)\b', query_lower):
+    # Trigger if it contains "pdf/report" and some intent like "make/of/for" or starts with "pdf"
+    if pdf_match and (re.search(r'\b(make|create|generate|build|prepare|write|of|for|about)\b', query_lower) or query_lower.startswith('pdf')):
         topic = re.sub(
             r'(make|create|generate|build|prepare|give me|write)\s+'
             r'(a\s+|an\s+|me\s+|the\s+)?'

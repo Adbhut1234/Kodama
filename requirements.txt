@@ -1,5 +1,5 @@
 ollama
 duckduckgo-search
-customtkinter
+python-pptx
 pyinstaller
 reportlab

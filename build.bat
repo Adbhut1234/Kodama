@@ -1,35 +1,36 @@
 @echo off
 echo ============================================
-echo   Building Adi's AI Assistant Desktop App
+echo   KODAMA AI — Production Build Script
 echo ============================================
 echo.
 
-:: Install build dependencies
-echo [1/3] Installing dependencies...
-pip install pyinstaller customtkinter
+:: 1. Install Build Dependencies
+echo [1/4] Synchronizing build environment...
+pip install pyinstaller ollama duckduckgo_search python-pptx reportlab
 echo.
 
-:: Build the exe
-echo [2/3] Building executable...
+:: 2. Build Python API Bridge
+echo [2/4] Synthesizing Neural Bridge (api_bridge.exe)...
 pyinstaller --noconfirm --onefile --windowed ^
-    --name "AdiAIAssistant" ^
-    --collect-all customtkinter ^
+    --name "api_bridge" ^
     --hidden-import ollama ^
     --hidden-import ddgs ^
     --hidden-import pptx ^
-    --hidden-import fpdf ^
-    desktop_app.py
+    --hidden-import reportlab ^
+    api_bridge.py
 echo.
 
-:: Done
-echo [3/3] Build complete!
+:: 3. Build Electron Application
+echo [3/4] Packaging Electron Interface...
+call npm run build
+echo.
+
+:: 4. Finalize
+echo [4/4] Synthesis complete!
 echo.
 echo ============================================
-echo   Your .exe is in the 'dist' folder:
-echo   dist\AdiAIAssistant.exe
+echo   Your installer is in the 'release' folder.
+echo   Neural Bridge is embedded in the binary.
 echo ============================================
-echo.
-echo IMPORTANT: The user must have Ollama installed
-echo and running (ollama serve) for the app to work.
 echo.
 pause
