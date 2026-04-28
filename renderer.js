@@ -761,6 +761,65 @@ function switchConfigTab(tabId) {
     }
 }
 
+// ── Bug Report Modal ─────────────────────────────────────────────────────────
+function openBugReportModal() {
+    const modal = document.getElementById('bug-modal');
+    const content = modal.querySelector('.glass-panel');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    setTimeout(() => {
+        modal.classList.add('opacity-100');
+        content.classList.remove('translate-y-12');
+    }, 10);
+}
+
+function closeBugReportModal() {
+    const modal = document.getElementById('bug-modal');
+    const content = modal.querySelector('.glass-panel');
+    modal.classList.remove('opacity-100');
+    content.classList.add('translate-y-12');
+    setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        
+        // Reset inputs
+        document.getElementById('bug-name').value = '';
+        document.getElementById('bug-email').value = '';
+        document.getElementById('bug-desc').value = '';
+    }, 500);
+}
+
+async function submitBugReport() {
+    const btn = document.getElementById('bug-submit-btn');
+    const name = document.getElementById('bug-name').value.trim();
+    const email = document.getElementById('bug-email').value.trim();
+    const desc = document.getElementById('bug-desc').value.trim();
+    
+    if (!name || !email || !desc) {
+        alert("Please fill in all fields.");
+        return;
+    }
+    
+    const originalText = btn.innerHTML;
+    btn.innerHTML = 'Sending... <span class="material-symbols-outlined text-[16px] animate-spin">sync</span>';
+    btn.disabled = true;
+    
+    try {
+        const result = await window.kodama.reportBug({name, email, description: desc});
+        if (result.success) {
+            alert("Bug reported successfully!");
+            closeBugReportModal();
+        } else {
+            alert("Failed to report bug: " + result.error);
+        }
+    } catch (e) {
+        alert("Error: " + e.message);
+    } finally {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    }
+}
+
 // ── Keyboard ─────────────────────────────────────────────────────────────────
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {

@@ -56,6 +56,8 @@ def handle_action(action, request):
         return handle_pdf(request)
     elif action == "generate_ppt":
         return handle_ppt(request)
+    elif action == "report_bug":
+        return handle_report_bug(request)
     else:
         return {"error": f"Unknown action: {action}"}
 
@@ -237,8 +239,51 @@ def handle_chat(request):
     }
 
 
-
-
+def handle_report_bug(request):
+    name = request.get("name", "Unknown")
+    email = request.get("email", "Unknown")
+    bug_desc = request.get("description", "")
+    
+    msg = f"Bug Report from: {name} ({email})\n\nDescription:\n{bug_desc}"
+    
+    # Save locally to ensure it's not lost
+    bugs_file = os.path.join(KODAMA_DATA_DIR, "bug_reports.txt")
+    try:
+        with open(bugs_file, "a", encoding="utf-8") as f:
+            f.write(msg + "\n" + "-"*40 + "\n")
+            
+        import smtplib
+        from email.mime.text import MIMEText
+        
+        # 1. Prepare Admin Email (Bug Details)
+        email_msg = MIMEText(msg, 'plain', 'utf-8')
+        email_msg['Subject'] = f"New Kodama Bug Report from {name}"
+        email_msg['From'] = "YOUR_GMAIL@gmail.com"
+        email_msg['To'] = "YOUR_GMAIL@gmail.com"
+        
+        # Gmail SMTP server
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login("YOUR_GMAIL@gmail.com", "YOUR_GMAIL_APP_PASSWORD")
+        
+        # Send Admin Email
+        server.send_message(email_msg)
+        
+        # 2. Prepare and Send Thank You Email to User
+        if email and "@" in email:
+            thank_you_text = f"Hi {name},\n\nThank you for reaching out and reporting this bug! We have successfully received your report and our team will look into it shortly.\n\nFor your records, here is the description you provided:\n{bug_desc}\n\nBest regards,\nThe Kodama AI Team"
+            thank_you_msg = MIMEText(thank_you_text, 'plain', 'utf-8')
+            thank_you_msg['Subject'] = "Thank You for Your Bug Report - Kodama AI"
+            thank_you_msg['From'] = "YOUR_GMAIL@gmail.com"
+            thank_you_msg['To'] = email
+            
+            server.send_message(thank_you_msg)
+            
+        server.quit()
+        
+        return {"success": True}
+    except Exception as e:
+        return {"error": str(e)}
 
 def handle_pdf(request):
     from document_generator import create_pdf

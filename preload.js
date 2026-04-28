@@ -22,6 +22,9 @@ contextBridge.exposeInMainWorld('kodama', {
     checkStatus: () =>
         ipcRenderer.invoke('check-status'),
 
+    reportBug: (bugData) =>
+        ipcRenderer.invoke('report-bug', bugData),
+
 
 
     generatePDF: (topic) =>

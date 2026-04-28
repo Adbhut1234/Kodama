@@ -157,6 +157,10 @@ ipcMain.handle('check-status', async () => {
     return callPython({ action: 'status' });
 });
 
+ipcMain.handle('report-bug', async (event, bugData) => {
+    return callPython({ action: 'report_bug', ...bugData });
+});
+
 
 
 // PDF generation

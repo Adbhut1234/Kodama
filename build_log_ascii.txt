@@ -1,0 +1,121 @@
+
+> kodama-ai@1.0.0 build
+> electron-builder --win --x64
+
+  ??? electron-builder  version=25.1.8 os=10.0.26200
+  ??? loaded configuration  file=package.json ("build" field)
+  ??? executing @electron/rebuild  electronVersion=35.7.5 arch=x64 buildFromSource=false appDir=./
+  ??? installing native dependencies  arch=x64
+  ??? completed installing native dependencies
+  ??? packaging       platform=win32 arch=x64 electron=35.7.5 appOutDir=release\win-unpacked
+  ??? updating asar integrity executable resource  executablePath=release\win-unpacked\KODAMA AI.exe
+  ??? signing with signtool.exe  path=release\win-unpacked\KODAMA AI.exe
+  ??? no signing info identified, signing is skipped  signHook=false cscInfo=null
+  ??? building        target=nsis file=release\KODAMA AI Setup 1.0.0.exe archs=x64 oneClick=false perMachine=false
+  ??? signing with signtool.exe  path=release\win-unpacked\resources\elevate.exe
+  ??? no signing info identified, signing is skipped  signHook=false cscInfo=null
+  ??? C:\Users\Adi Pandey\AppData\Local\electron-builder\Cache\nsis\nsis-3.0.4.1\Bin\makensis.exe process failed ERR_ELECTRON_BUILDER_CANNOT_EXECUTE
+Exit code:
+1
+Output:
+Command line defined: "APP_ID=com.kodama.ai"
+Command line defined: "APP_GUID=535fdaea-6a04-5867-a8fd-56d742c84839"
+Command line defined: "UNINSTALL_APP_KEY=535fdaea-6a04-5867-a8fd-56d742c84839"
+Command line defined: "PRODUCT_NAME=KODAMA AI"
+Command line defined: "PRODUCT_FILENAME=KODAMA AI"
+Command line defined: "APP_FILENAME=KODAMA AI"
+Command line defined: "APP_DESCRIPTION=KODAMA AI ??? Your Professional Synthesis Partner"
+Command line defined: "VERSION=1.0.0"
+Command line defined: "PROJECT_DIR=D:\Projects\my-llm-project"
+Command line defined: "BUILD_RESOURCES_DIR=D:\Projects\my-llm-project\build"
+Command line defined: "APP_PACKAGE_NAME=kodama-ai"
+Command line defined: "MUI_ICON=D:\Projects\my-llm-project\assets\logo.png"
+Command line defined: "MUI_UNICON=D:\Projects\my-llm-project\assets\logo.png"
+Command line defined: "APP_64=D:\Projects\my-llm-project\release\kodama-ai-1.0.0-x64.nsis.7z"
+Command line defined: "APP_64_NAME=kodama-ai-1.0.0-x64.nsis.7z"
+Command line defined: "APP_64_HASH=4D07999E0044B32C547AE93B6D09414A95A844420644A1D1F371EBDFB6903324F2438B2ADE161141B8CA61FB015782CBAA1AD32B8167387DAA74E0666FACF917"
+Command line defined: "APP_64_UNPACKED_SIZE=538525"
+Command line defined: "COMPANY_NAME=Adi"
+Command line defined: "APP_INSTALLER_STORE_FILE=kodama-ai-updater\installer.exe"
+Command line defined: "COMPRESSION_METHOD=7z"
+Command line defined: "MULTIUSER_INSTALLMODE_ALLOW_ELEVATION"
+Command line defined: "INSTALL_MODE_PER_ALL_USERS_REQUIRED"
+Command line defined: "allowToChangeInstallationDirectory"
+Command line defined: "SHORTCUT_NAME=KODAMA AI"
+Command line defined: "UNINSTALL_DISPLAY_NAME=KODAMA AI 1.0.0"
+Command line defined: "RECREATE_DESKTOP_SHORTCUT"
+Command line defined: "MUI_HEADERIMAGE"
+Command line defined: "MUI_HEADERIMAGE_RIGHT"
+Command line defined: "MUI_HEADERIMAGE_BITMAP=D:\Projects\my-llm-project\assets\installer_header.png"
+Command line defined: "MUI_WELCOMEFINISHPAGE_BITMAP=D:\Projects\my-llm-project\assets\opera_sidebar.png"
+Command line defined: "UNINSTALLER_ICON=D:\Projects\my-llm-project\assets\logo.png"
+Command line defined: "MUI_UNWELCOMEFINISHPAGE_BITMAP=D:\Projects\my-llm-project\assets\opera_sidebar.png"
+Command line defined: "ESTIMATED_SIZE=538524"
+Command line defined: "COMPRESS=auto"
+Command line defined: "BUILD_UNINSTALLER"
+Command line defined: "UNINSTALLER_OUT_FILE=D:\Projects\my-llm-project\release\__uninstaller-nsis-kodama-ai.exe"
+Processing config: C:\Users\Adi Pandey\AppData\Local\electron-builder\Cache\nsis\nsis-3.0.4.1\nsisconf.nsh
+Processing script file: "<stdin>" (UTF8)
+
+Error output:
+Error while loading icon from "D:\Projects\my-llm-project\assets\logo.png": invalid icon file
+Error in macro MUI_INTERFACE on macroline 87
+Error in macro MUI_UNPAGE_INIT on macroline 7
+Error in macro MUI_UNPAGE_WELCOME on macroline 5
+!include: error in script: "assistedInstaller.nsh" on line 70
+Error in script "<stdin>" on line 110 -- aborting creation process
+  failedTask=build stackTrace=Error: C:\Users\Adi Pandey\AppData\Local\electron-builder\Cache\nsis\nsis-3.0.4.1\Bin\makensis.exe process failed ERR_ELECTRON_BUILDER_CANNOT_EXECUTE
+Exit code:
+1
+Output:
+Command line defined: "APP_ID=com.kodama.ai"
+Command line defined: "APP_GUID=535fdaea-6a04-5867-a8fd-56d742c84839"
+Command line defined: "UNINSTALL_APP_KEY=535fdaea-6a04-5867-a8fd-56d742c84839"
+Command line defined: "PRODUCT_NAME=KODAMA AI"
+Command line defined: "PRODUCT_FILENAME=KODAMA AI"
+Command line defined: "APP_FILENAME=KODAMA AI"
+Command line defined: "APP_DESCRIPTION=KODAMA AI ??? Your Professional Synthesis Partner"
+Command line defined: "VERSION=1.0.0"
+Command line defined: "PROJECT_DIR=D:\Projects\my-llm-project"
+Command line defined: "BUILD_RESOURCES_DIR=D:\Projects\my-llm-project\build"
+Command line defined: "APP_PACKAGE_NAME=kodama-ai"
+Command line defined: "MUI_ICON=D:\Projects\my-llm-project\assets\logo.png"
+Command line defined: "MUI_UNICON=D:\Projects\my-llm-project\assets\logo.png"
+Command line defined: "APP_64=D:\Projects\my-llm-project\release\kodama-ai-1.0.0-x64.nsis.7z"
+Command line defined: "APP_64_NAME=kodama-ai-1.0.0-x64.nsis.7z"
+Command line defined: "APP_64_HASH=4D07999E0044B32C547AE93B6D09414A95A844420644A1D1F371EBDFB6903324F2438B2ADE161141B8CA61FB015782CBAA1AD32B8167387DAA74E0666FACF917"
+Command line defined: "APP_64_UNPACKED_SIZE=538525"
+Command line defined: "COMPANY_NAME=Adi"
+Command line defined: "APP_INSTALLER_STORE_FILE=kodama-ai-updater\installer.exe"
+Command line defined: "COMPRESSION_METHOD=7z"
+Command line defined: "MULTIUSER_INSTALLMODE_ALLOW_ELEVATION"
+Command line defined: "INSTALL_MODE_PER_ALL_USERS_REQUIRED"
+Command line defined: "allowToChangeInstallationDirectory"
+Command line defined: "SHORTCUT_NAME=KODAMA AI"
+Command line defined: "UNINSTALL_DISPLAY_NAME=KODAMA AI 1.0.0"
+Command line defined: "RECREATE_DESKTOP_SHORTCUT"
+Command line defined: "MUI_HEADERIMAGE"
+Command line defined: "MUI_HEADERIMAGE_RIGHT"
+Command line defined: "MUI_HEADERIMAGE_BITMAP=D:\Projects\my-llm-project\assets\installer_header.png"
+Command line defined: "MUI_WELCOMEFINISHPAGE_BITMAP=D:\Projects\my-llm-project\assets\opera_sidebar.png"
+Command line defined: "UNINSTALLER_ICON=D:\Projects\my-llm-project\assets\logo.png"
+Command line defined: "MUI_UNWELCOMEFINISHPAGE_BITMAP=D:\Projects\my-llm-project\assets\opera_sidebar.png"
+Command line defined: "ESTIMATED_SIZE=538524"
+Command line defined: "COMPRESS=auto"
+Command line defined: "BUILD_UNINSTALLER"
+Command line defined: "UNINSTALLER_OUT_FILE=D:\Projects\my-llm-project\release\__uninstaller-nsis-kodama-ai.exe"
+Processing config: C:\Users\Adi Pandey\AppData\Local\electron-builder\Cache\nsis\nsis-3.0.4.1\nsisconf.nsh
+Processing script file: "<stdin>" (UTF8)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Error output:
+Error while loading icon from "D:\Projects\my-llm-project\assets\logo.png": invalid icon file
+Error in macro MUI_INTERFACE on macroline 87
+Error in macro MUI_UNPAGE_INIT on macroline 7
+Error in macro MUI_UNPAGE_WELCOME on macroline 5
+!include: error in script: "assistedInstaller.nsh" on line 70
+Error in script "<stdin>" on line 110 -- aborting creation process
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            at ChildProcess.<anonymous> (D:\Projects\my-llm-project\node_modules\builder-util\src\util.ts:255:14)
+    at Object.onceWrapper (node:events:623:26)
+    at ChildProcess.emit (node:events:508:28)
+    at ChildProcess.cp.emit (D:\Projects\my-llm-project\node_modules\cross-spawn\lib\enoent.js:34:29)
+    at maybeClose (node:internal/child_process:1100:16)
+    at Process.ChildProcess._handle.onexit (node:internal/child_process:305:5)

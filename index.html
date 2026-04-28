@@ -854,10 +854,16 @@
                         <p class="text-[13px] text-on-surface-variant leading-relaxed mb-8 relative z-10 max-w-md">
                             Our architecture is designed for professional documentation and autonomous research synthesis.
                         </p>
-                        <button class="px-8 py-3.5 rounded-full bg-primary text-on-primary-fixed text-[11px] font-black uppercase tracking-widest shadow-xl hover:scale-105 active:scale-95 transition-all relative z-10 flex items-center gap-3">
-                            Technical Archive
-                            <span class="material-symbols-outlined text-[16px]">open_in_new</span>
-                        </button>
+                        <div class="flex items-center gap-4 relative z-10 flex-wrap">
+                            <button class="px-8 py-3.5 rounded-full bg-primary text-on-primary-fixed text-[11px] font-black uppercase tracking-widest shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-3">
+                                Technical Archive
+                                <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+                            </button>
+                            <button onclick="openBugReportModal()" class="px-8 py-3.5 rounded-full bg-surface-variant border border-outline text-on-surface text-[11px] font-black uppercase tracking-widest hover:bg-surface hover:scale-105 active:scale-95 transition-all flex items-center gap-3">
+                                Report Bug
+                                <span class="material-symbols-outlined text-[16px]">bug_report</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -943,6 +949,40 @@
                     </div>
                 </div>
             </main>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════════ -->
+    <!--  BUG REPORT MODAL                                                     -->
+    <!-- ══════════════════════════════════════════════════════════════════════ -->
+    <div id="bug-modal" class="fixed inset-0 z-[2000] hidden items-center justify-center p-6 transition-all duration-500 opacity-0 bg-background/80 backdrop-blur-xl">
+        <div class="glass-panel w-full max-w-lg rounded-[2.5rem] border border-outline shadow-[0_40px_100px_rgba(0,0,0,0.5)] flex flex-col overflow-hidden translate-y-12 transition-transform duration-700 relative p-10">
+            <button onclick="closeBugReportModal()" class="absolute top-6 right-6 w-10 h-10 rounded-full bg-surface-variant/50 border border-outline flex items-center justify-center hover:bg-surface-variant transition-all z-50 group">
+                <span class="material-symbols-outlined text-[18px] text-on-surface group-active:scale-95">close</span>
+            </button>
+            <h2 class="text-2xl font-black text-on-surface mb-2 uppercase tracking-tighter">Report an Issue</h2>
+            <p class="text-[12px] text-on-surface-variant mb-8">Please provide your details and describe the bug. Our team will be notified.</p>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-on-surface/60 mb-2 block">Your Name</label>
+                    <input type="text" id="bug-name" class="w-full bg-surface-variant/50 border border-outline rounded-xl px-4 py-3 text-[13px] text-on-surface focus:border-primary/50 outline-none transition-colors" placeholder="e.g. Jane Doe">
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-on-surface/60 mb-2 block">Your Email</label>
+                    <input type="email" id="bug-email" class="w-full bg-surface-variant/50 border border-outline rounded-xl px-4 py-3 text-[13px] text-on-surface focus:border-primary/50 outline-none transition-colors" placeholder="jane@example.com">
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-on-surface/60 mb-2 block">Bug Description</label>
+                    <textarea id="bug-desc" rows="4" class="w-full bg-surface-variant/50 border border-outline rounded-xl px-4 py-3 text-[13px] text-on-surface focus:border-primary/50 outline-none transition-colors resize-none" placeholder="Describe the issue you encountered..."></textarea>
+                </div>
+                <div class="pt-4">
+                    <button id="bug-submit-btn" onclick="submitBugReport()" class="w-full px-6 py-4 rounded-xl bg-primary text-on-primary-fixed text-[12px] font-black uppercase tracking-widest shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3">
+                        Submit Report
+                        <span class="material-symbols-outlined text-[16px]">send</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 

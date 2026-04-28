@@ -4,14 +4,16 @@ echo   KODAMA AI — Production Build Script
 echo ============================================
 echo.
 
+set VENV_PYTHON=llm-env\Scripts\python.exe
+
 :: 1. Install Build Dependencies
 echo [1/4] Synchronizing build environment...
-pip install pyinstaller ollama duckduckgo_search python-pptx reportlab
+"%VENV_PYTHON%" -m pip install pyinstaller ollama duckduckgo_search python-pptx reportlab
 echo.
 
 :: 2. Build Python API Bridge
 echo [2/4] Synthesizing Neural Bridge (api_bridge.exe)...
-pyinstaller --noconfirm --onefile --windowed ^
+"%VENV_PYTHON%" -m PyInstaller --noconfirm --onefile --windowed ^
     --name "api_bridge" ^
     --hidden-import ollama ^
     --hidden-import ddgs ^

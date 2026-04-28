@@ -18,7 +18,7 @@
     "productName": "KODAMA AI",
     "win": {
       "target": "nsis",
-      "icon": "assets/logo.png",
+      "icon": "assets/logo.ico",
       "extraResources": [
         {
           "from": "dist/api_bridge.exe",
@@ -30,10 +30,10 @@
       "oneClick": false,
       "perMachine": false,
       "allowToChangeInstallationDirectory": true,
-      "installerIcon": "assets/logo.png",
-      "uninstallerIcon": "assets/logo.png",
+      "installerIcon": "assets/logo.ico",
+      "uninstallerIcon": "assets/logo.ico",
       "installerHeader": "assets/installer_header.png",
-      "installerHeaderIcon": "assets/logo.png",
+      "installerHeaderIcon": "assets/logo.ico",
       "installerSidebar": "assets/opera_sidebar.png",
       "uninstallerSidebar": "assets/opera_sidebar.png",
       "createDesktopShortcut": "always",
